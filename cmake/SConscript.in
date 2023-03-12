@@ -1,0 +1,12 @@
+Import('env')
+
+folioDir = env.Dir('../..').srcnode()
+
+name = '${lib_name}'
+
+env.DWAComponent(
+    name,${SConscript_COMPONENTS}
+    CPPPATH = [
+        folioDir.Dir('include'),
+        ],${SConscript_LIBS}
+    )
