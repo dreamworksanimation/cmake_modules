@@ -200,7 +200,7 @@ function(moonray_dso_simple targetName)
             NAMELINK_SKIP
         )
         install(TARGETS ${targetName}_proxy COMPONENT ${targetName}
-            LIBRARY DESTINATION ${RDL2DSO_PROXY_INSTALL_DIR}
+            LIBRARY DESTINATION ${RDL2DSO_INSTALL_DIR}
             NAMELINK_SKIP
         )
     endif()
@@ -323,7 +323,7 @@ function(moonray_ispc_dso name)
             NAMELINK_SKIP
         )
         install(TARGETS ${name}_proxy COMPONENT ${name}
-            LIBRARY DESTINATION ${RDL2DSO_PROXY_INSTALL_DIR}
+            LIBRARY DESTINATION ${RDL2DSO_INSTALL_DIR}
             NAMELINK_SKIP
         )
     endif()
