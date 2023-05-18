@@ -210,6 +210,13 @@ function(moonray_dso_simple targetName)
             )
         add_custom_target(coredata_${targetName} ALL DEPENDS
             ${CMAKE_CURRENT_BINARY_DIR}/${dsoName}.json)
+
+        # copy resulting DSOs to <build>/rdl2dso dir to be found by tests
+        add_custom_command(TARGET ${targetName} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/rdl2dso
+            COMMAND ${CMAKE_COMMAND} -E create_symlink $<TARGET_FILE:${targetName}> ${CMAKE_BINARY_DIR}/rdl2dso/$<TARGET_FILE_NAME:${targetName}>
+            COMMAND ${CMAKE_COMMAND} -E create_symlink $<TARGET_FILE:${targetName}_proxy> ${CMAKE_BINARY_DIR}/rdl2dso/$<TARGET_FILE_NAME:${targetName}_proxy>
+        )
     endif()
 
     if (NOT ARG_SKIP_INSTALL)
@@ -355,6 +362,13 @@ function(moonray_ispc_dso name)
             )
         add_custom_target(coredata_${name} ALL DEPENDS
             ${CMAKE_CURRENT_BINARY_DIR}/${name}.json)
+
+        # copy resulting DSO to <build>/rdl2dso dir to be found by tests
+        add_custom_command(TARGET ${name} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/rdl2dso
+            COMMAND ${CMAKE_COMMAND} -E create_symlink $<TARGET_FILE:${name}> ${CMAKE_BINARY_DIR}/rdl2dso/$<TARGET_FILE_NAME:${name}>
+            COMMAND ${CMAKE_COMMAND} -E create_symlink $<TARGET_FILE:${name}_proxy> ${CMAKE_BINARY_DIR}/rdl2dso/$<TARGET_FILE_NAME:${name}_proxy>
+        )
     endif()
 
     if (NOT ARG_SKIP_INSTALL)
