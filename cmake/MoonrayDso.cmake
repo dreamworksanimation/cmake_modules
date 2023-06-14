@@ -5,7 +5,9 @@ function(Moonray_dso_cxx_compile_options target)
     if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         target_compile_options(${target}
             PRIVATE
-                -fabi-version=6                 # corrects the promotion behavior of C++11 scoped enums and the mangling of template argument packs.
+                $<$<BOOL:${ABI_SET_VERSION}>:
+                    -fabi-version=${ABI_VERSION} # corrects the promotion behavior of C++11 scoped enums and the mangling of template argument packs.
+                >
                 -fexceptions                    # Enable exception handling.
                 -fno-omit-frame-pointer         # TODO: add a note
                 -fno-strict-aliasing            # TODO: add a note
@@ -85,7 +87,6 @@ function(Moonray_dso_cxx_compile_definitions target)
     target_compile_definitions(${target}
         PRIVATE
             __AVX__                             # TODO: add comment
-            _GLIBCXX_USE_CXX11_ABI=0            # TODO: add comment
             BOOST_FILESYSTEM_VERSION=3          # TODO: add comment
             DWA_BOOST_VERSION=1073000           # TODO: add comment
             OPENVDB_USE_BLOSC                   # TODO: Move this to where it is needed?
