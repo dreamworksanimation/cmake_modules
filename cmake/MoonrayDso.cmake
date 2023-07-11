@@ -249,6 +249,10 @@ endif()
 set(ISPC_DSO_GEN_SCRIPT ${ISPC_DSO_GENERATE} CACHE FILEPATH
     "The ispc_dso_generate script for generating sources and headers for a DSO from the .json file")
 
+if (NOT DEFINED PYTHON_EXECUTABLE)
+    set(PYTHON_EXECUTABLE python)
+endif()
+
 # Create a DSO target from .cc, .ispc sources and JSON attribute description
 # Parameters:
 #   name                : The name of the target and source filenames, eg.
@@ -304,7 +308,7 @@ function(moonray_ispc_dso name)
                         WORKING_DIRECTORY
                             ${CMAKE_CURRENT_LIST_DIR}
                         COMMAND
-                            ${ISPC_DSO_GEN_SCRIPT} ${jsonSrc}
+                            ${PYTHON_EXECUTABLE} ${ISPC_DSO_GEN_SCRIPT} ${jsonSrc}
                             -o ${genDir} -i ${jsonIncludeDir}
     )
 
