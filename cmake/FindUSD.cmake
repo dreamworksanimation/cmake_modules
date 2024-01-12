@@ -1,4 +1,4 @@
-# Copyright 2023 DreamWorks Animation LLC
+# Copyright 2023-2024 DreamWorks Animation LLC
 # SPDX-License-Identifier: Apache-2.0
 
 # This module has portions that are based on Autodesk's Maya-USD plugin which
