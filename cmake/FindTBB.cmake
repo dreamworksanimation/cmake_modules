@@ -7,6 +7,7 @@
 ## Modifed line 407 : make imported component target GLOBAL, otherwise the
 ## target TBB can be found where the component targets TBB:comp are out of scope, causing an
 ## error at line 222
+## Updated cmake_minimum_required(VERSION 3.1) -> cmake_minimum_required(VERSION 3.5) to support CMake 4
 
 #===============================================================================
 # This script will attempt to find TBB and set up a TBB target.
@@ -44,7 +45,7 @@
 #===============================================================================
 
 # We use INTERFACE libraries, which are only supported in 3.x
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.5)
 
 # These two are used to automatically find the root and include directories.
 set(_TBB_INCLUDE_SUBDIR "include")
