@@ -10,6 +10,13 @@
 ## Updated cmake_minimum_required(VERSION 3.1) -> cmake_minimum_required(VERSION 3.5) to support CMake 4
 
 #===============================================================================
+# Try to find modern system-provided TBB first
+find_package(TBB CONFIG QUIET)
+if(TBB_FOUND)
+    # System TBB found, use it and skip the rest of this legacy script
+    return()
+endif()
+#===============================================================================
 # This script will attempt to find TBB and set up a TBB target.
 #
 # The user may specify a version and lists of required and optional components:
