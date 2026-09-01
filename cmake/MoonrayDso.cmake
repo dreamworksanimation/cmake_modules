@@ -172,7 +172,7 @@ function(Moonray_dso_cxx_compile_definitions target)
         PRIVATE
             ${GLOBAL_CPP_FLAGS}                 # TODO: add comment
             BOOST_FILESYSTEM_VERSION=3          # TODO: add comment
-            DWA_BOOST_VERSION=1073000           # TODO: add comment
+            DWA_BOOST_VERSION=1082000           # TODO: add comment
             OPENVDB_USE_BLOSC                   # TODO: Move this to where it is needed?
             OPENVDB_USE_LOG4CPLUS               # TODO: Move this to where it is needed?
             DWREAL_IS_DOUBLE=1                  # TODO: add comment
